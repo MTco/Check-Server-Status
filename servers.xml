@@ -1,0 +1,12 @@
+<servers>
+	<server>
+		<name>p1rox.fr</name>
+		<ip>p1rox.fr</ip>
+		<port>80</port>
+	</server>
+	<server>
+		<name>localhost</name>
+		<ip>localhost</ip>
+		<port>80</port>
+	</server>
+</servers>
