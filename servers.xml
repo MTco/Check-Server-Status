@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<servers>
+	<server>
+		<name>p1rox.fr</name>
+		<ip>p1rox.fr</ip>
+		<port>80</port>
+	</server>
+	<server>
+		<name>Test MBP</name>
+		<ip>localhost</ip>
+		<port>80</port>
+	</server>
+</servers>
