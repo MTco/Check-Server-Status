@@ -10,4 +10,4 @@
 		<ip>localhost</ip>
 		<port>80</port>
 	</server>
-</servers>
+<server><name>XML Add Test</name><ip>127.0.0.1</ip><port>80</port></server></servers>

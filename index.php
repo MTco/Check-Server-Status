@@ -1,3 +1,13 @@
+<?php
+	if(isset($_POST['name']) && isset($_POST['host']))
+	{
+		$port = 80;
+
+		if(!empty($_POST['port'])) $port = $_POST['port'];
+
+		addServer($_POST['name'], $_POST['host'], $port);
+	}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,8 +27,21 @@
 					<th class="text-center">Port</th>
 					<th class="text-center">Status</th>
 				</tr>
-				<?php parser(); ?>
+                <?php parser(); ?>
 			</table>
+			<form class="form-inline" role="form" action="index.php" method="post">
+				<div class="form-group">
+					<input type="text" class="form-control" id="name" name="name" placeholder="Name">
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" id="host" name="host" placeholder="Domain / IP">
+				</div>
+				<div class="form-group">
+					<input type="text" size="4" class="form-control" id="port" name="port" placeholder="Port">
+				</div>
+				<button type="submit" class="btn btn-default">Ajouter</button>
+			</form>
+			<br>
 			<footer>
     			<a href="https://twitter.com/p1rox">@p1rox</a>
     		</footer> 
@@ -31,6 +54,16 @@ function getStatus($ip, $port) {
 	$socket = @fsockopen($ip, $port, $errorNo, $errorStr, 2);
 	if (!$socket) return false;
 	else return true;
+}
+
+function addServer($name, $host, $port) {
+	$filename = 'servers.xml';
+	$servers = simplexml_load_file($filename);
+	$server = $servers->addChild('server');
+	$server->addChild('name', (string)$name);
+	$server->addChild('ip', (string)$host);
+	$server->addChild('port', (string)$port);
+	$servers->asXML($filename);
 }
 
 function parser() {
