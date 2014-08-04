@@ -6,6 +6,8 @@
 		if(!empty($_POST['port'])) $port = $_POST['port'];
 
 		addServer($_POST['name'], $_POST['host'], $port);
+
+		header('Location: index.php');
 	}
 ?>
 <!DOCTYPE html>
