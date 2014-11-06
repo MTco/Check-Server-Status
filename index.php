@@ -30,7 +30,8 @@
     		<table class="table table-bordered">
 				<tr>
 					<th class="text-center">Name</th>
-					<th class="text-center">Domain / IP</th>
+					<th class="text-center">Domain</th>
+					<th class="text-center">IP</th>
 					<th class="text-center">Port</th>
 					<th class="text-center">Status</th>
 					<th class="text-center" style="width:75px">Delete</th>
@@ -88,7 +89,7 @@ function addServer($name, $host, $port)
 	$server->addAttribute('id', (string) $i);
 	if(strlen($name) == 0) $name = $host;
 	$server->addChild('name', (string)$name);
-	$server->addChild('ip', (string)$host);
+	$server->addChild('host', (string)$host);
 	$server->addChild('port', (string)$port);
 	$servers->asXML($filename);
 }
@@ -112,18 +113,18 @@ function parser()
 			{
 				echo "<tr>";
 				echo "<td>".$server->name."</td>";
-				if(!filter_var($server->ip, FILTER_VALIDATE_IP))
+				if(filter_var($server->host, FILTER_VALIDATE_IP))
 				{
-					echo "<td>".$server->ip." - ".gethostbyname($server->ip)."</td>";
+					echo "<td class=\"text-center\">N/A</td><td class=\"text-center\">".$server->host."</td>";	
 				}
 				else
 				{
-					echo "<td>".$server->ip."</td>";
+					echo "<td class=\"text-center\">".$server->host."</td><td class=\"text-center\">".gethostbyname($server->host)."</td>";
 				}
 
 				echo "<td class=\"text-center\">".$server->port."</td>";
 
-				if (getStatus((string)$server->ip, (string)$server->port))
+				if (getStatus((string)$server->host, (string)$server->port))
 				{
 					echo "<td class=\"text-center\"><span class=\"label label-success\">Online</span></td>";
 				}
@@ -162,5 +163,6 @@ function deleteServer($index)
 
 	if ($nodeToRemove != null) $servers->removeChild($nodeToRemove);
 
-	$serverFile->save($file); 
+	$serverFile->save($file);
+	header('Location: index.php');
 }

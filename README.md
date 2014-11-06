@@ -10,9 +10,9 @@ Example :
 
 ```
 <servers>
-	<server>
+	<server id="42">
 		<name>Home Server</name>
-		<ip>myserver.com</ip>
+		<host>myserver.com</host>
 		<port>80</port>
 	</server>
 </servers>
