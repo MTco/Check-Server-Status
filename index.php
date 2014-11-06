@@ -86,7 +86,6 @@ function addServer($name, $host, $port)
 	$server = $servers->addChild('server');
 
 	$server->addAttribute('id', (string) $i);
-	//$server->addChild('id', (string)$id++);
 	if(strlen($name) == 0) $name = $host;
 	$server->addChild('name', (string)$name);
 	$server->addChild('ip', (string)$host);
@@ -102,8 +101,7 @@ function parser()
 	{
 		$servers = file_get_contents("servers.xml");
 		if (trim($servers) == '') //File exists but empty
-		{
-			
+		{	
 			$content = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><servers></servers>";
 			file_put_contents($file, $content, FILE_APPEND | LOCK_EX);
 		}
@@ -156,7 +154,6 @@ function deleteServer($index)
 		if ((int)$attrValue == $index) $nodeToRemove = $server;
 	}
 
-	//Now remove it.
 	if ($nodeToRemove != null) $servers->removeChild($nodeToRemove);
 
 	$serverFile->save($file); 
