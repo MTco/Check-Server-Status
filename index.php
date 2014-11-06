@@ -113,7 +113,15 @@ function parser()
 			{
 				echo "<tr>";
 				echo "<td>".$server->name."</td>";
-				echo "<td>".$server->ip."</td>";
+				if(!filter_var($server->ip, FILTER_VALIDATE_IP))
+				{
+					echo "<td>".$server->ip." - ".gethostbyname($server->ip)."</td>";
+				}
+				else
+				{
+					echo "<td>".$server->ip."</td>";
+				}
+
 				echo "<td class=\"text-center\">".$server->port."</td>";
 
 				if (getStatus((string)$server->ip, (string)$server->port))
