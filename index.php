@@ -20,20 +20,20 @@
     <head>
         <meta name="robots" content="noindex">
         <meta charset="utf-8">
-        <title>Server Status</title>
+        <title>Server(s) Status</title>
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/bootstrap-theme.css" rel="stylesheet">
     </head>
     <body>
     	<div class="container">
-    		<h3>Server status</h3>
+    		<h3>Server(s) Status</h3>
     		<table class="table table-bordered">
 				<tr>
 					<th class="text-center">Name</th>
 					<th class="text-center">Domain / IP</th>
 					<th class="text-center">Port</th>
 					<th class="text-center">Status</th>
-					<th class="text-center" style="width:80px">Delete</th>
+					<th class="text-center" style="width:75px">Delete</th>
 				</tr>
                 <?php parser(); ?>
 			</table>
@@ -47,7 +47,7 @@
 				<div class="form-group">
 					<input type="text" size="4" class="form-control" id="port" name="port" placeholder="Port">
 				</div>
-				<button type="submit" class="btn btn-default">Ajouter</button>
+				<button type="submit" class="btn btn-default">Add</button>
 			</form>
 			<br>
 			<footer>
@@ -108,7 +108,6 @@ function parser()
 		else
 		{
 			$servers = simplexml_load_file("servers.xml");
-			$i = 0;
 			foreach ($servers as $server)
 			{
 				echo "<tr>";
@@ -132,9 +131,8 @@ function parser()
 				{
 					echo "<td class=\"text-center\"><span class=\"label label-danger\">Offline</span></td>";
 				}
-				echo "<td class=\"text-center\"><a href=\"index.php?del=".$server->attributes()."\">X</a></td>";
+				echo "<td class=\"text-center\"><a href=\"index.php?del=".$server->attributes()."\" style=\"text-decoration:none\"><b style=\"color:red;\">X</b></a></td>";
 				echo "</tr>";
-				$i++;
 			}
 		}
 	}
