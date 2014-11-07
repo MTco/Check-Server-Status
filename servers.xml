@@ -15,4 +15,4 @@
 		<host>127.0.0.1</host>
 		<port>1337</port>
 	</server>
-<server id="3"><name>T411</name><host>8.8.8.8</host><port>80</port></server></servers>
+</servers>

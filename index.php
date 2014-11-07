@@ -149,7 +149,8 @@ function deleteServer($index)
 {
 	$file = "servers.xml";
 
-	$serverFile = new DOMDocument; 
+	$serverFile = new DOMDocument;
+	$serverFile->formatOutput = true;
 	$serverFile->load($file);
 	$servers = $serverFile->documentElement;
 	$list = $servers->getElementsByTagName('server');
