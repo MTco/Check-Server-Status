@@ -23,6 +23,18 @@
         <title>Server(s) Status</title>
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/bootstrap-theme.css" rel="stylesheet">
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script type="text/javascript">
+window.onload = function(){
+	$('.deleteMode').hide();
+}
+
+$(document).ready(function() {
+    $('#editMode').click(function() {
+        $('.deleteMode').toggle();
+    });
+});
+        </script>
     </head>
     <body>
     	<div class="container">
@@ -34,10 +46,11 @@
 					<th class="text-center">IP</th>
 					<th class="text-center">Port</th>
 					<th class="text-center">Status</th>
-					<th class="text-center" style="width:75px">Delete</th>
+					<th class="text-center deleteMode" style="width:75px">Delete</th>
 				</tr>
                 <?php parser(); ?>
 			</table>
+			<input id="editMode" type="button" value="Edit mode" checked="checked" class="btn btn-default pull-right" />
 			<form class="form-inline" role="form" action="index.php" method="post">
 				<div class="form-group">
 					<input type="text" class="form-control" id="name" name="name" placeholder="Name">
@@ -132,7 +145,7 @@ function parser()
 				{
 					echo "<td class=\"text-center\"><span class=\"label label-danger\">Offline</span></td>";
 				}
-				echo "<td class=\"text-center\"><a href=\"index.php?del=".$server->attributes()."\" style=\"text-decoration:none\"><b style=\"color:red;\">X</b></a></td>";
+				echo "<td class=\"text-center deleteMode\"><a href=\"index.php?del=".$server->attributes()."\" style=\"text-decoration:none\"><b style=\"color:red;\">X</b></a></td>";
 				echo "</tr>";
 			}
 		}
