@@ -23,18 +23,6 @@
         <title>Server(s) Status</title>
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/bootstrap-theme.css" rel="stylesheet">
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
-        <script type="text/javascript">
-window.onload = function(){
-	$('.deleteMode').hide();
-}
-
-$(document).ready(function() {
-    $('#editMode').click(function() {
-        $('.deleteMode').toggle();
-    });
-});
-        </script>
     </head>
     <body>
     	<div class="container">
@@ -56,18 +44,21 @@ $(document).ready(function() {
 					<input type="text" class="form-control" id="name" name="name" placeholder="Name">
 				</div>
 				<div class="form-group">
-					<input type="text" class="form-control" id="host" name="host" placeholder="Domain / IP">
+					<input type="text" class="form-control" onkeyup="javascript:checkForm(this)" id="host" name="host" placeholder="Domain / IP">
 				</div>
 				<div class="form-group">
-					<input type="text" size="4" class="form-control" id="port" name="port" placeholder="Port">
+					<input type="text" size="5" class="form-control" id="port" name="port" placeholder="Port">
 				</div>
-				<button type="submit" class="btn btn-default">Add</button>
+				<button type="submit" class="btn btn-default" id="add-button">Add</button>
 			</form>
 			<br>
 			<footer>
     			<a href="https://twitter.com/p1rox">@p1rox</a>
     		</footer> 
-    	</div>   	
+    	</div>
+    	<script src="js/jquery.js" type="text/javascript"></script>
+        <script src="js/app.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>   	
     </body>
 </html>
 <?php
